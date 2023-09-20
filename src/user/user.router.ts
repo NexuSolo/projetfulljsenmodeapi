@@ -28,5 +28,29 @@ export class UserRouter {
                 next(error);
             }
         });
+
+        this.router.delete('/delete/:id', (req, res, next) => {
+            try {
+                const result = this.userController.delete(
+                    parseInt(req.params.id),
+                );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
+
+        this.router.put('/update/:id', (req, res, next) => {
+            try {
+                const result = this.userController.update(
+                    parseInt(req.params.id),
+                    req.body.username,
+                );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
     }
+    
 }
