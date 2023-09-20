@@ -5,21 +5,16 @@ export class UserController {
     constructor(private userService: UserService) {}
 
     add(username: string): User {
-        try {
-            // throw new Error('Not implemented yet');
-            // is the username empty ?
-            if(username.length === 0) throw new Error('Username cannot be empty');
-            // is the username whitespaced ?
-            if(username.search(/\s/) !== -1) throw new Error('Username cannot contain whitespaces');
-            // other checks...
-        }
-        catch (error: unknown) {
-            throw new Error('Username cannot be empty');
-        }
+        if(username === undefined) throw new Error('Username cannot be undefined');
+        // is the username empty ?
+        if(username.length === 0) throw new Error('Username cannot be empty');
+        // is the username whitespaced ?
+        if(username.search(/\s/) !== -1) throw new Error('Username cannot contain whitespaces');
         return this.userService.add(username);
     }
 
     getById(id: number): User | null {
+        if(id === undefined) throw new Error('Id cannot be undefined');
         // is the id a decimal ?
         if(id % 1 !== 0) throw new Error('Id must be a decimal');
         // is the id a negative number ?
@@ -29,6 +24,7 @@ export class UserController {
     }
 
     delete(id: number): User | null {
+        if(id === undefined) throw new Error('Id cannot be undefined');
         // is the id a decimal ?
         if(id % 1 !== 0) throw new Error('Id must be a decimal');
         // is the id a negative number ?
@@ -38,6 +34,8 @@ export class UserController {
     }
 
     update(id: number, username: string): User | null {
+        if(id === undefined) throw new Error('Id cannot be undefined');
+        if(username === undefined) throw new Error('Username cannot be undefined');
         // is the id a decimal ?
         if(id % 1 !== 0) throw new Error('Id must be a decimal');
         // is the id a negative number ?
